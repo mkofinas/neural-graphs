@@ -1,0 +1,51 @@
+program: main.py
+project: cnn-generalization
+entity: neural-graphs
+method: bayes
+metric:
+  goal: maximize
+  name: test/best_tau
+parameters:
+  data:
+    value: cnn_park
+  model:
+    value: pna
+  eval_every:
+    value: 1000
+  n_epochs:
+    value: 5
+  loss._target_:
+    values:
+      - torch.nn.BCELoss
+      - torch.nn.MSELoss
+  distributed:
+    value: False
+  batch_size:
+    values:
+      - 8
+      - 32
+      - 128
+  model.d_hid:
+    values:
+      - 8
+      - 16
+      - 32
+      - 64
+      - 128
+  model.gnn_backbone.num_layers:
+    values:
+      - 2
+      - 3
+      - 4
+  model.pooling_method:
+    values:
+      - mean
+      - cat
+  model.pooling_layer_idx:
+    value: last
+
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - ${args_no_hyphens}

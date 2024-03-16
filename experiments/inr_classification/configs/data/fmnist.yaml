@@ -1,0 +1,57 @@
+# shared
+target: experiments.data.INRDataset
+normalize: False
+dataset_name: fmnist
+dataset_dir: dataset
+splits_path: fmnist_splits.json
+statistics_path: fmnist_statistics.pth
+num_classes: 10
+img_shape: [28, 28]
+inr_model:
+  _target_: nn.inr.INRPerLayer
+  in_features: 2
+  n_layers: 3
+  hidden_features: 32
+  out_features: 1
+
+stats:
+  # NOTE: Generated with `generate_fmnist_statistics.py`
+  weights_mean: [6.370305982272839e-06, 6.88720547259436e-06, 1.0729863788583316e-05]
+  weights_std: [0.07822809368371964, 0.03240188956260681, 0.13454964756965637]
+  biases_mean: [1.6790845336345228e-07, -1.1566662578843534e-05, -0.020282816141843796]
+  biases_std: [0.028561526909470558, 0.016700252890586853, 0.09595609456300735]
+
+train:
+  _target_: ${data.target}
+  _recursive_: True
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: train
+  normalize: ${data.normalize}
+  augmentation: True
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}
+
+val:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: val
+  normalize: ${data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}
+
+test:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: test
+  normalize: ${data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}
+

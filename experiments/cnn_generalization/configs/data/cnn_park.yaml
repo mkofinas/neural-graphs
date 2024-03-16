@@ -1,0 +1,78 @@
+# shared
+target: experiments.data_generalization.CNNParkCIFAR10
+normalize: False
+dataset_dir: dataset
+splits_path: cnn_park_splits.json
+statistics_path: null
+input_channels: 3
+num_classes: 10
+layer_layout: null
+img_shape: [32, 32]
+_max_kernel_height: 7
+_max_kernel_width: 7
+max_kernel_size:
+- ${data._max_kernel_height}
+- ${data._max_kernel_width}
+linear_as_conv: True
+flattening_method: null  # repeat_nodes or extra_layer
+max_spatial_resolution: 49  # 7x7 feature map size
+deg: [118980,      0,      0, 607096, 394242,  98840,      0,      0, 390958,
+       87468,      0,      0,      0,      0,      0,      0, 381834,  59684,
+           0,      0,      0,      0,      0,      0,      0,      0,      0,
+           0,      0,      0,      0,      0, 351606,  81132]
+data_format: graph
+max_num_hidden_layers: 5
+inr_model: null
+
+stats:
+  weights_mean: null
+  weights_std: null
+  biases_mean: null
+  biases_std: null
+
+train:
+  _target_: ${data.target}
+  _recursive_: True
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: train
+  normalize: ${data.normalize}
+  augmentation: False
+  statistics_path: ${data.statistics_path}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${data.max_num_hidden_layers}
+  data_format: ${data.data_format}
+  # num_classes: ${data.num_classes}
+
+val:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: val
+  normalize: ${data.normalize}
+  augmentation: False
+  statistics_path: ${data.statistics_path}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${data.max_num_hidden_layers}
+  data_format: ${data.data_format}
+  # num_classes: ${data.num_classes}
+
+test:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: test
+  normalize: ${data.normalize}
+  augmentation: False
+  statistics_path: ${data.statistics_path}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${data.max_num_hidden_layers}
+  data_format: ${data.data_format}
+  # num_classes: ${data.num_classes}
+

@@ -1,0 +1,42 @@
+program: main.py
+project: cnn-generalization
+entity: neural-graphs
+method: bayes
+metric:
+  goal: maximize
+  name: test/best_tau
+parameters:
+  data:
+    value: cnn_park
+  model:
+    value: dynamic_stat
+  data.data_format:
+    value: stat
+  eval_every:
+    value: 1000
+  n_epochs:
+    value: 5
+  loss._target_:
+    values:
+      - torch.nn.BCELoss
+      - torch.nn.MSELoss
+  distributed:
+    value: False
+  batch_size:
+    values:
+      - 8
+      - 32
+      - 128
+  model.h_size:
+    values:
+      - 8
+      - 16
+      - 128
+      - 512
+      - 1000
+
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - ${args_no_hyphens}

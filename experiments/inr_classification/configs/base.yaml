@@ -1,0 +1,60 @@
+defaults:
+  - model: rtransformer
+  - data: mnist
+  - _self_
+
+n_epochs: 300
+batch_size: 128
+
+n_views: 1
+num_workers: 8
+eval_every: 1000
+num_accum: 1
+
+compile: false
+compile_kwargs:
+  # mode: reduce-overhead
+  mode: null
+  options:
+    matmul-padding: True
+
+optim:
+  _target_: torch.optim.AdamW
+  lr: 1e-3
+  weight_decay: 5e-4
+  amsgrad: True
+  fused: False
+
+scheduler:
+  _target_: experiments.lr_scheduler.WarmupLRScheduler
+  warmup_steps: 1000
+
+distributed:
+  world_size: 1
+  rank: 0
+  device_ids: null
+
+load_ckpt: null
+
+use_amp: False
+gradscaler:
+  enabled: ${use_amp}
+autocast:
+  device_type: cuda
+  enabled: ${use_amp}
+  dtype: float16
+
+clip_grad: True
+clip_grad_max_norm: 10.0
+
+seed: 42
+save_path: ./output
+wandb:
+  project: inr-classification
+  entity: null
+  name: null
+
+matmul_precision: high
+cudnn_benchmark: False
+
+debug: False

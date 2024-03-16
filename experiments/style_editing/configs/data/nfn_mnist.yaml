@@ -1,0 +1,39 @@
+# shared
+target: experiments.data.SirenAndOriginalDataset
+data_format: nfn_mnist
+dataset_name: mnist
+style:
+  _target_: experiments.style_editing.image_processing.Dilate
+normalize: False
+img_shape: [28, 28]
+inr_model:
+  _target_: experiments.data_nfn.SirenPerLayer
+  in_features: 2
+  hidden_features: 32
+  hidden_layers: 1
+  out_features: 1
+  outermost_linear: True
+  first_omega_0: 30.0
+  hidden_omega_0: 30.0
+img_ds_cls: torchvision.datasets.MNIST
+img_path: dataset/mnist
+img_download: True
+
+siren_path: dataset/nfn-mnist-inrs
+
+batch_siren:
+  _target_: experiments.data_nfn.BatchSiren
+  in_features: ${data.inr_model.in_features}
+  hidden_features: ${data.inr_model.hidden_features}
+  hidden_layers: ${data.inr_model.hidden_layers}
+  out_features: ${data.inr_model.out_features}
+  outermost_linear: ${data.inr_model.outermost_linear}
+  first_omega_0: ${data.inr_model.first_omega_0}
+  hidden_omega_0: ${data.inr_model.hidden_omega_0}
+  img_shape: ${data.img_shape}
+
+stats:
+  weights_mean: [0.00012268121645320207, -8.858834803504578e-07, 2.4448696422041394e-05]
+  weights_std: [0.2868247926235199, 0.017109761014580727, 0.06391365826129913]
+  biases_mean: [0.0006445261533372104, -3.312843546154909e-05, -0.03267413377761841]
+  biases_std: [0.40904879570007324, 0.10408575087785721, 0.09695733338594437]

@@ -1,0 +1,7 @@
+_target_: nn.original_nfn.models.MlpHead
+_partial_: true
+sigmoid: false
+num_out: 1
+lnorm: false
+pool_mode: HNP
+dropout: 0

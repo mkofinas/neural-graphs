@@ -1,0 +1,94 @@
+# shared
+target: experiments.data.INRAndImageDataset
+data_format: dws_mnist
+style:
+  _target_: experiments.style_editing.image_processing.Dilate
+normalize: False
+dataset_name: mnist
+dataset_dir: dataset
+splits_path: mnist_splits.json
+statistics_path: mnist_statistics.pth
+img_shape: [28, 28]
+inr_model:
+  _target_: nn.inr.INRPerLayer
+  in_features: 2
+  n_layers: 3
+  hidden_features: 32
+  out_features: 1
+img_ds_cls: torchvision.datasets.MNIST
+img_path: dataset/mnist
+img_download: True
+
+batch_siren:
+  _target_: experiments.data.BatchSiren
+  in_features: ${out_of_domain_data.inr_model.in_features}
+  out_features: ${out_of_domain_data.inr_model.out_features}
+  n_layers: ${out_of_domain_data.inr_model.n_layers}
+  hidden_features: ${out_of_domain_data.inr_model.hidden_features}
+  img_shape: ${out_of_domain_data.img_shape}
+
+stats:
+  weights_mean: [-0.0001166215879493393, -3.2710825053072767e-06, 7.234242366394028e-05]
+  weights_std: [0.06279338896274567, 0.01827024295926094, 0.11813738197088242]
+  biases_mean: [4.912401891488116e-06, -3.210141949239187e-05, -0.012279038317501545]
+  biases_std: [0.021347912028431892, 0.0109943225979805, 0.09998151659965515]
+
+train:
+  _target_: ${out_of_domain_data.target}
+  _recursive_: True
+  dataset_name: ${out_of_domain_data.dataset_name}
+  dataset_dir: ${out_of_domain_data.dataset_dir}
+  splits_path: ${out_of_domain_data.splits_path}
+  split: train
+  normalize: ${out_of_domain_data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${out_of_domain_data.statistics_path}
+  img_offset: 0
+  # num_classes: ${out_of_domain_data.num_classes}
+  style_function: ${out_of_domain_data.style}
+  img_ds:
+    _target_: ${out_of_domain_data.img_ds_cls}
+    train: True
+    root: ${out_of_domain_data.img_path}
+    download: ${out_of_domain_data.img_download}
+
+val:
+  _target_: ${out_of_domain_data.target}
+  _recursive_: True
+  dataset_name: ${out_of_domain_data.dataset_name}
+  dataset_dir: ${out_of_domain_data.dataset_dir}
+  splits_path: ${out_of_domain_data.splits_path}
+  split: val
+  normalize: ${out_of_domain_data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${out_of_domain_data.statistics_path}
+  img_offset: 45000
+  # num_classes: ${out_of_domain_data.num_classes}
+  style_function: ${out_of_domain_data.style}
+  img_ds:
+    _target_: ${out_of_domain_data.img_ds_cls}
+    train: True
+    root: ${out_of_domain_data.img_path}
+    download: ${out_of_domain_data.img_download}
+
+test:
+  _target_: ${out_of_domain_data.target}
+  _recursive_: True
+  dataset_name: ${out_of_domain_data.dataset_name}
+  dataset_dir: ${out_of_domain_data.dataset_dir}
+  splits_path: ${out_of_domain_data.splits_path}
+  split: test
+  normalize: ${out_of_domain_data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${out_of_domain_data.statistics_path}
+  img_offset: 0
+  # num_classes: ${out_of_domain_data.num_classes}
+  style_function: ${out_of_domain_data.style}
+  img_ds:
+    _target_: ${out_of_domain_data.img_ds_cls}
+    train: False
+    root: ${out_of_domain_data.img_path}
+    download: ${out_of_domain_data.img_download}

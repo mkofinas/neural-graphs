@@ -1,0 +1,45 @@
+defaults:
+  - data: cifar10
+  - _self_
+
+name: cifar10_zooV3
+
+cpus: 32
+gpus: 1
+cpu_per_trial: 8
+device: cuda
+
+cudnn_benchmark: True
+matmul_precision: high
+num_workers: 8
+
+random_options:
+  n_layers: [2, 3, 4, 5, 6, 7, 8]
+  n_classes: ${data.n_classes}
+  in_channels: ${data.in_channels}
+  channels: [4, 8, 16, 32, 64]
+  kernel_size: [3, 5, 7]  # NOTE: We only use odd kernels for now
+  stride: [1]  # NOTE: We only use stide 1 for now
+  activation: ['relu', 'gelu', 'tanh', 'sigmoid', 'leaky_relu', 'none']
+
+num_epochs: 200
+ckpt_freq: 10
+
+seed: 1
+num_models: 50_000
+model: null
+
+batch_size: 512
+optimizer:
+  _target_: torch.optim.AdamW
+  lr: 0.001
+  weight_decay: 0.0
+
+wandb:
+  project: cnn-park
+  # entity: null
+  # name: null
+  # log_config: True
+
+hydra:
+  output_subdir: null

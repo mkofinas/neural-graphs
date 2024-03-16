@@ -1,0 +1,16 @@
+name: nn.nfn
+cls: nn.nfn.models.TransferNet
+kwargs:
+  hidden_chan: 128
+  hidden_layers: 3
+  mode: NP
+  out_scale: 0.01
+  dropout: 0.0
+  gfft:
+    in_channels: 1
+    mapping_size: 128
+    scale: 3
+  iosinemb:
+    max_freq: 3
+    num_bands: 3
+    enc_layers: false

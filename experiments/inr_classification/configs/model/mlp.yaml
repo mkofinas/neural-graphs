@@ -1,0 +1,5 @@
+name: mlp
+kwargs:
+  dim_hidden: 32
+  n_hidden: 4
+  add_bn: true

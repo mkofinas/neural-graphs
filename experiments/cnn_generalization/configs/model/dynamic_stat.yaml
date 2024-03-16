@@ -1,0 +1,7 @@
+_target_: nn.dynamic_stat_net.DynamicStatNet
+
+h_size: 1000
+max_kernel_size: ${prod:${data._max_kernel_height}, ${data._max_kernel_width}}
+max_num_hidden_layers: ${data.max_num_hidden_layers}
+max_kernel_height: ${data._max_kernel_height}
+max_kernel_width: ${data._max_kernel_width}

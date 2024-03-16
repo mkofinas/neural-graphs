@@ -1,0 +1,13 @@
+_target_: nn.dws.models.DWSModel
+_recursive_: False
+input_features: 1
+hidden_dim: 32
+output_features: 1
+n_hidden: 4
+reduction: max
+n_fc_layers: 1
+num_heads: 8
+set_layer: sab
+dropout_rate: 0.0
+bn: true
+diagonal: false

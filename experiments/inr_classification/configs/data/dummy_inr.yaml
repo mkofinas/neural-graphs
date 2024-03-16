@@ -1,0 +1,26 @@
+# shared
+target: experiments.data.INRDummyDataset
+normalize: False
+num_classes: 10
+img_shape: [28, 28]
+inr_model:
+  _target_: nn.inr.INRPerLayer
+  in_features: 2
+  n_layers: 3
+  hidden_features: 32
+  out_features: 1
+layer_layout: [2, 2048, 2048, 3]
+stats: null
+
+train:
+  _target_: ${data.target}
+  _recursive_: True
+  layer_layout: ${data.layer_layout}
+
+val:
+  _target_: ${data.target}
+  layer_layout: ${data.layer_layout}
+
+test:
+  _target_: ${data.target}
+  layer_layout: ${data.layer_layout}

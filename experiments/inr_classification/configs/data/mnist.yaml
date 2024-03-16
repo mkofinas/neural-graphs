@@ -1,0 +1,55 @@
+# shared
+target: experiments.data.INRDataset
+normalize: False
+dataset_name: mnist
+dataset_dir: dataset
+splits_path: mnist_splits.json
+statistics_path: mnist_statistics.pth
+num_classes: 10
+img_shape: [28, 28]
+inr_model:
+  _target_: nn.inr.INRPerLayer
+  in_features: 2
+  n_layers: 3
+  hidden_features: 32
+  out_features: 1
+
+stats:
+  weights_mean: [-4.215954686515033e-05, -7.55547659991862e-07, 7.886120874900371e-05]
+  weights_std: [0.06281130015850067, 0.018268151208758354, 0.11791174858808517]
+  biases_mean: [5.419965418695938e-06, 3.7173406326473923e-06, -0.01239530649036169]
+  biases_std: [0.021334609016776085, 0.011004417203366756, 0.09989194571971893]
+
+train:
+  _target_: ${data.target}
+  _recursive_: True
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: train
+  normalize: ${data.normalize}
+  augmentation: True
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}
+
+val:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: val
+  normalize: ${data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}
+
+test:
+  _target_: ${data.target}
+  dataset_dir: ${data.dataset_dir}
+  splits_path: ${data.splits_path}
+  split: test
+  normalize: ${data.normalize}
+  augmentation: False
+  permutation: False
+  statistics_path: ${data.statistics_path}
+  # num_classes: ${data.num_classes}

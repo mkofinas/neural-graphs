@@ -1,0 +1,29 @@
+root: cifar10
+efficient_dataset_path: cifar10/dataset.pt
+n_classes: 10
+in_channels: 3
+dataset_seed: 0
+train:
+  _target_: torchvision.datasets.CIFAR10
+  root: ${data.root}
+  train: True
+  download: True
+  transform:
+    _target_: torchvision.transforms.Compose
+    transforms:
+      - _target_: torchvision.transforms.ToTensor
+      - _target_: torchvision.transforms.Normalize
+        mean: [0.49139968, 0.48215841, 0.44653091]
+        std: [0.24703223, 0.24348513, 0.26158784]
+test:
+  _target_: torchvision.datasets.CIFAR10
+  root: ${data.root}
+  train: False
+  download: True
+  transform:
+    _target_: torchvision.transforms.Compose
+    transforms:
+      - _target_: torchvision.transforms.ToTensor
+      - _target_: torchvision.transforms.Normalize
+        mean: [0.49139968, 0.48215841, 0.44653091]
+        std: [0.24703223, 0.24348513, 0.26158784]

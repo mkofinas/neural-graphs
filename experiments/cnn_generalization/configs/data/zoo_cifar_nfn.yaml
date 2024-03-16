@@ -1,0 +1,73 @@
+target: experiments.data_generalization.NFNZooDataset
+data_path: dataset/small-zoo-cifar10
+idcs_file: dataset/nfn_cifar10_split.csv
+normalize: False
+statistics_path: dataset/zoo_cifar_nfn_statistics.pth
+
+input_channels: 1  # grayscale cifar10
+num_classes: 10
+layer_layout: [1, 16, 16, 16, 10]
+img_shape: [32, 32]
+_max_kernel_height: 3
+_max_kernel_width: 3
+max_kernel_size:
+- ${data._max_kernel_height}
+- ${data._max_kernel_width}
+linear_as_conv: True
+flattening_method: null  # repeat_nodes or extra_layer or None
+max_spatial_resolution: 49  # 7x7 feature map size
+deg: [12000, 192000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 504000]
+data_format: graph
+max_num_hidden_layers: 3
+
+stats:
+  # weights_mean: [-0.008810473, -0.019692749, -0.012631954, 0.018839896]
+  # weights_std: [0.5502305, 0.4353398, 0.3642972, 0.36821017]
+  # biases_mean: [-0.050750412, 0.006151379, 0.046173226, 0.04843864]
+  # biases_std: [0.40749395, 0.9723978, 1.9454101, 0.5446171]
+  weights_mean: null
+  weights_std: null
+  biases_mean: null
+  biases_std: null
+
+train:
+  _target_: ${data.target}
+  _recursive_: True
+  data_path: ${data.data_path}
+  idcs_file: ${data.idcs_file}
+  split: train
+  augmentation: True
+  noise_scale: 0.1
+  drop_rate: 0.01
+  normalize: ${data.normalize}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${model.graph_constructor.max_num_hidden_layers}
+  data_format: ${data.data_format}
+
+val:
+  _target_: ${data.target}
+  data_path: ${data.data_path}
+  idcs_file: ${data.idcs_file}
+  split: val
+  augmentation: False
+  normalize: ${data.normalize}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${model.graph_constructor.max_num_hidden_layers}
+  data_format: ${data.data_format}
+
+test:
+  _target_: ${data.target}
+  data_path: ${data.data_path}
+  idcs_file: ${data.idcs_file}
+  split: test
+  augmentation: False
+  normalize: ${data.normalize}
+  max_kernel_size: ${data.max_kernel_size}
+  linear_as_conv: ${data.linear_as_conv}
+  flattening_method: ${data.flattening_method}
+  max_num_hidden_layers: ${model.graph_constructor.max_num_hidden_layers}
+  data_format: ${data.data_format}

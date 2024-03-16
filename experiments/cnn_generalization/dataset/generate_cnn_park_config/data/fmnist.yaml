@@ -1,0 +1,29 @@
+root: fashion_mnist
+efficient_dataset_path: fashion_mnist/dataset.pt
+n_classes: 10
+in_channels: 1
+dataset_seed: 0
+train:
+  _target_: torchvision.datasets.FashionMNIST
+  root: ${data.root}
+  train: True
+  download: True
+  transform:
+    _target_: torchvision.transforms.Compose
+    transforms:
+      - _target_: torchvision.transforms.ToTensor
+      - _target_: torchvision.transforms.Normalize
+        mean: [0.2860405969887955]
+        std: [0.35302424451492237]
+test:
+  _target_: torchvision.datasets.FashionMNIST
+  root: ${data.root}
+  train: False
+  download: True
+  transform:
+    _target_: torchvision.transforms.Compose
+    transforms:
+      - _target_: torchvision.transforms.ToTensor
+      - _target_: torchvision.transforms.Normalize
+        mean: [0.2860405969887955]
+        std: [0.35302424451492237]

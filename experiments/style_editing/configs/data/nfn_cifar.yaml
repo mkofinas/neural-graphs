@@ -1,0 +1,39 @@
+# shared
+target: experiments.data.SirenAndOriginalDataset
+data_format: nfn_mnist
+dataset_name: cifar10
+style:
+  _target_: experiments.style_editing.image_processing.IncreaseContrast
+normalize: False
+img_shape: [32, 32]
+inr_model:
+  _target_: experiments.data_nfn.SirenPerLayer
+  in_features: 2
+  hidden_features: 32
+  hidden_layers: 1
+  out_features: 3
+  outermost_linear: True
+  first_omega_0: 30.0
+  hidden_omega_0: 30.0
+img_ds_cls: torchvision.datasets.CIFAR10
+img_path: dataset/cifar10
+img_download: True
+
+siren_path: dataset/nfn-cifar10-inrs
+
+batch_siren:
+  _target_: experiments.data_nfn.BatchSiren
+  in_features: ${data.inr_model.in_features}
+  hidden_features: ${data.inr_model.hidden_features}
+  hidden_layers: ${data.inr_model.hidden_layers}
+  out_features: ${data.inr_model.out_features}
+  outermost_linear: ${data.inr_model.outermost_linear}
+  first_omega_0: ${data.inr_model.first_omega_0}
+  hidden_omega_0: ${data.inr_model.hidden_omega_0}
+  img_shape: ${data.img_shape}
+
+stats:
+  weights_mean: [0.00018394182552583516, -2.5748543066583807e-06, -4.988231376046315e-05]
+  weights_std: [0.2802596390247345, 0.017659902572631836, 0.05460081994533539]
+  biases_mean: [0.0005445665447041392, -2.380055775574874e-06, -0.0024678376503288746]
+  biases_std: [0.40869608521461487, 0.10388434678316116, 0.08734994381666183]

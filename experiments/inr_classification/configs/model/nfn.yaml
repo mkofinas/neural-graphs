@@ -1,0 +1,7 @@
+_target_: nn.nfn.models.InvariantNFN
+hchannels: [512, 512, 512]
+mode: NP
+normalize: False
+in_channels: 1
+d_out: 10
+dropout: 0.5
