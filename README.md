@@ -13,13 +13,6 @@ Official implementation for
 [![OpenReview](https://img.shields.io/badge/OpenReview-oO6FsMyDBt-b31b1b.svg)](https://openreview.net/forum?id=oO6FsMyDBt)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
-Our codebase is based on [_Equivariant Architectures for Learning in Deep Weight Spaces_](https://arxiv.org/abs/2301.12780)
-by Aviv Navon, Aviv Shamsian, Idan Achituve, Ethan Fetaya, Gal Chechik, Haggai Maron,
-ICML 2023.
-<p align="center">
-    <img src=assets/neural-graphs.png>
-</p>
-
 ## Setup environment
 
 To run the experiments, first create a clean virtual environment and install the requirements.
@@ -80,6 +73,12 @@ arbitrary layers.
 
 - [CIFAR10-GS](https://storage.cloud.google.com/gresearch/smallcnnzoo-dataset/cifar10.tar.xz)
 - CNN Wild Park (coming soon)
+
+## Acknowledgments
+
+- This code started based on [github.com/AvivNavon/DWSNets](https://github.com/AvivNavon/DWSNets) and the DWSNet implementation is copied from there
+- The NFN implementation is copied and slightly adapted from [github.com/AllanYangZhou/nfn](https://github.com/AllanYangZhou/nfn)
+- We implemented the relational transformer in PyTorch following the Jax implementation at [github.com/CameronDiao/relational-transformer](https://github.com/CameronDiao/relational-transformer). Our implementation has some differences that we describe in the paper.
 
 ## Citation
 
