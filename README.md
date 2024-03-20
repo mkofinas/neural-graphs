@@ -3,13 +3,13 @@
 Official implementation for
 <pre>
 <b>Graph Neural Networks for Learning Equivariant Representations of Neural Networks</b>
-<a href="https://mkofinas.github.io/">Miltiadis Kofinas</a>*, <a href="https://bknyaz.github.io/">Boris Knyazev</a>, <a href="https://www.cyanogenoid.com/">Yan Zhang</a>, <a href="https://yunlu-chen.github.io/">Yunlu Chen</a>, <a href="https://gertjanburghouts.github.io/">Gertjan J. Burghouts</a>, <a href="https://egavves.com/">Efstratios Gavves</a>, <a href="https://www.ceessnoek.info/">Cees G. M. Snoek</a>, <a href="https://davzha.netlify.app/">David W Zhang</a>*
+<a href="https://mkofinas.github.io/">Miltiadis Kofinas</a>*, <a href="https://bknyaz.github.io/">Boris Knyazev</a>, <a href="https://www.cyanogenoid.com/">Yan Zhang</a>, <a href="https://yunlu-chen.github.io/">Yunlu Chen</a>, <a href="https://gertjanburghouts.github.io/">Gertjan J. Burghouts</a>, <a href="https://egavves.com/">Efstratios Gavves</a>, <a href="https://www.ceessnoek.info/">Cees G. M. Snoek</a>, <a href="https://davzha.netlify.app/">David W. Zhang</a>*
 <em>ICLR 2024</em>
-<!-- <a href="https://arxiv.org/">https://arxiv.org/</a> --><a href="https://openreview.net/forum?id=oO6FsMyDBt">https://openreview.net/forum?id=oO6FsMyDBt/</a>
+<a href="https://arxiv.org/abs/2403.12143">https://arxiv.org/abs/2403.12143/</a>
 *Joint first and last authors
 </pre>
 
-<!-- [![arXiv](https://img.shields.io/badge/arXiv-2403.00000-b31b1b.svg?logo=arxiv)](https://arxiv.org/abs/2403.00000) -->
+[![arXiv](https://img.shields.io/badge/arXiv-2403.12143-b31b1b.svg?logo=arxiv)](https://arxiv.org/abs/2403.12143)
 [![OpenReview](https://img.shields.io/badge/OpenReview-oO6FsMyDBt-b31b1b.svg)](https://openreview.net/forum?id=oO6FsMyDBt)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
