@@ -13,6 +13,12 @@ Official implementation for
 [![OpenReview](https://img.shields.io/badge/OpenReview-oO6FsMyDBt-b31b1b.svg)](https://openreview.net/forum?id=oO6FsMyDBt)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/neural_graphs_dark_transparent_bg.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/neural_graphs_light_transparent_bg.png">
+  <img alt="Neural Graphs" src="assets/neural_graphs_light_transparent_bg.png">
+</picture>
+
 ## Setup environment
 
 To run the experiments, first create a clean virtual environment and install the requirements.
@@ -74,12 +80,6 @@ arbitrary layers.
 - [CIFAR10-GS](https://storage.cloud.google.com/gresearch/smallcnnzoo-dataset/cifar10.tar.xz)
 - CNN Wild Park (coming soon)
 
-## Acknowledgments
-
-- This code started based on [github.com/AvivNavon/DWSNets](https://github.com/AvivNavon/DWSNets) and the DWSNet implementation is copied from there
-- The NFN implementation is copied and slightly adapted from [github.com/AllanYangZhou/nfn](https://github.com/AllanYangZhou/nfn)
-- We implemented the relational transformer in PyTorch following the Jax implementation at [github.com/CameronDiao/relational-transformer](https://github.com/CameronDiao/relational-transformer). Our implementation has some differences that we describe in the paper.
-
 ## Citation
 
 If you find our work or this code to be useful in your own research, please consider citing the following paper:
@@ -102,6 +102,12 @@ If you find our work or this code to be useful in your own research, please cons
   year={2023}
 }
 ```
+
+## Acknowledgments
+
+- This codebase started based on [github.com/AvivNavon/DWSNets](https://github.com/AvivNavon/DWSNets) and the DWSNet implementation is copied from there
+- The NFN implementation is copied and slightly adapted from [github.com/AllanYangZhou/nfn](https://github.com/AllanYangZhou/nfn)
+- We implemented the relational transformer in PyTorch following the JAX implementation at [github.com/CameronDiao/relational-transformer](https://github.com/CameronDiao/relational-transformer). Our implementation has some differences that we describe in the paper.
 
 ## Contributors
 
