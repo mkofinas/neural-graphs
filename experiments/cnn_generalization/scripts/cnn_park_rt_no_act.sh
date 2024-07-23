@@ -11,5 +11,5 @@ do
       model.d_out_hid=64 model.n_heads=4 model.n_layers=3 model.dropout=0.2 \
       model.pooling_method=cat model.pooling_layer_idx=last model.use_act_embed=False \
       wandb.name=cnn_generalization_cnn_park_rt_seed_${seed}_epoch_20_drop_0.2_no_act_bce \
-      "$extra_args"
+      $extra_args
 done

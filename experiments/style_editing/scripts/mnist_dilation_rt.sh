@@ -10,5 +10,5 @@ do
       model.dropout=0.3 model.graph_constructor.use_pos_embed=True \
       model.modulate_v=True model.rev_edge_features=True \
       wandb.name=style_editing_mnist_dilation_rt_seed_${seed}_hid_64_epoch_200_rev_edge_epoch_200_drop_0.3 \
-      "$extra_args"
+      $extra_args
 done

@@ -9,5 +9,5 @@ do
       model.graph_constructor.num_probe_features=64 model.dropout=0.2 \
       model.graph_constructor.use_pos_embed=True model.modulate_v=True \
       wandb.name=inr_cls_mnist_rt_probe_64_mod_pe_seed_${seed}_epoch_200_drop_0.2 \
-      "$extra_args"
+      $extra_args
 done

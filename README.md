@@ -12,6 +12,7 @@ Official implementation for
 [![arXiv](https://img.shields.io/badge/arXiv-2403.12143-b31b1b.svg?logo=arxiv)](https://arxiv.org/abs/2403.12143)
 [![OpenReview](https://img.shields.io/badge/OpenReview-oO6FsMyDBt-b31b1b.svg)](https://openreview.net/forum?id=oO6FsMyDBt)
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+[![CNN Wild Park](https://img.shields.io/badge/Zenodo-CNN%20Wild%20Park-blue?logo=zenodo)](https://doi.org/10.5281/zenodo.12797219)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/neural_graphs_dark_transparent_bg.png">
@@ -78,7 +79,7 @@ layers, kernel sizes, activation functions, and residual connections between
 arbitrary layers.
 
 - [CIFAR10-GS](https://storage.cloud.google.com/gresearch/smallcnnzoo-dataset/cifar10.tar.xz)
-- CNN Wild Park (coming soon)
+- [CNN Wild Park](https://zenodo.org/records/12797219)
 
 ## Citation
 
